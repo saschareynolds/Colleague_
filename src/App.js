@@ -134,6 +134,13 @@ import Actionsheet from "./screens/actionsheet";
 import NHAccordion from "./screens/accordion/";
 import NHDatePicker from "./screens/datepicker/";
 
+import AaronBennet from "./screens/anatomy/AaronBennet";
+import AndyHertzfeld from "./screens/anatomy/AndyHertzfeld";
+import AnganaGhosh from "./screens/anatomy/AnganaGhosh";
+import BradleyHorowitz from "./screens/anatomy/BradleyHorowitz";
+import BrittanyKelso from "./screens/anatomy/BrittanyKelso";
+import CarolineAaron from "./screens/anatomy/CarolineAaron";
+
 const Drawer = DrawerNavigator(
   {
     Home: { screen: Home },
@@ -176,6 +183,13 @@ const Drawer = DrawerNavigator(
 const AppNavigator = StackNavigator(
   {
     Drawer: { screen: Drawer },
+
+    AaronBennet: { screen: AaronBennet },
+    AndyHertzfeld: { screen: AndyHertzfeld },
+    AnganaGhosh: { screen: AnganaGhosh },
+    BradleyHorowitz: { screen: BradleyHorowitz },
+    BrittanyKelso: { screen: BrittanyKelso },
+    CarolineAaron: { screen: CarolineAaron },
 
     Header1: { screen: Header1 },
     Header2: { screen: Header2 },
