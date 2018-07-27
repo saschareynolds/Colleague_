@@ -1,46 +1,56 @@
-import React, { Component } from "react";
-import { ImageBackground, View, StatusBar } from "react-native";
-import { Container, Button, H3, Text } from "native-base";
+import React, { Component } from 'react';
+import firebase from 'firebase';
+import { Text, View } from 'react-native';
+import { Header, Button, Spinner } from './components/common/';
+import LoginForm from './components/LoginForm';
+import IndexEmail from './components/index';
+import {default as AppIndexScreen} from './sidebar/';
+const launchscreenBg = require("../../../assets/back.png");
+import firebaseApp from '../reminders/firebase.js';
+class App extends Component {
+  state = { loggedIn: null };
 
-import styles from "./styles";
+  componentWillMount() {
 
-const launchscreenBg = require("../../../assets/launchscreen-bg.png");
-const launchscreenLogo = require("../../../assets/cardlogo.jpg");
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log('firebase on auth state change', user);
+      if (user) {
+        this.setState({ loggedIn: true })
+      } else {
+        this.setState({ loggedIn: false })
+      }
+    });
+  }
 
-class Home extends Component {
+  renderContent() {
+    switch ( this.state.loggedIn ) {
+      case true:
+        return (
+          <AppIndexScreen navigation = {this.props.navigation}/>
+    
+        )
+      case false:
+        return <IndexEmail />;
+      default:
+        return <Spinner />;
+    }
+  }
+
   render() {
     return (
-      <Container>
-        <StatusBar barStyle="light-content" />
-        <ImageBackground source={launchscreenBg} style={styles.imageContainer}>
-          <View style={styles.logoContainer}>
-            <ImageBackground source={launchscreenLogo} style={styles.logo} />
-          </View>
-          <View
-            style={{
-              alignItems: "center",
-              marginBottom: 50,
-              backgroundColor: "transparent"
-            }}
-          >
-            <H3 style={styles.titletext}>E-Business Card</H3>
-            <H3 style={styles.text}>Welcome to our</H3>
-            <View style={{ marginTop: 8 }} />
-            <H3 style={styles.text}>E-Business Card application</H3>
-            <View style={{ marginTop: 8 }} />
-          </View>
-          <View style={{ marginBottom: 80 }}>
-            <Button
-              style={{ backgroundColor: "#6FAF98", alignSelf: "center" }}
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
-            >
-              <Text>Lets Go!</Text>
-            </Button>
-          </View>
-        </ImageBackground>
-      </Container>
+      <View style={{ flex: 1 }}>
+        <Header headerText="Colleague" />
+        { this.renderContent() }
+      </View>
     );
   }
 }
 
-export default Home;
+const styles = {
+  buttonContainerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  }
+};
+
+export default App;

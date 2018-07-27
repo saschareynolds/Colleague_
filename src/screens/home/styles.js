@@ -1,33 +1,35 @@
 const React = require("react-native");
-const { Dimensions, Platform } = React;
+const { Platform, Dimensions } = React;
+
 const deviceHeight = Dimensions.get("window").height;
+const deviceWidth = Dimensions.get("window").width;
 
 export default {
-  imageContainer: {
-    flex: 1,
+  drawerCover: {
+    alignSelf: "stretch",
+    height: deviceHeight / 3.5,
     width: null,
-    height: null
+    position: "relative",
+    marginBottom: 10
   },
-  logoContainer: {
-    flex: 1,
-    marginTop: deviceHeight / 8,
-    marginBottom: 30
-  },
-  logo: {
+  drawerImage: {
     position: "absolute",
-    left: Platform.OS === "android" ? 40 : 50,
-    top: Platform.OS === "android" ? 35 : 60,
-    width: 100,
-    height: 100
+    left: 100,
+    top: 80,
+    width: 70,
+    height: 70,
+    resizeMode: 'contain'
   },
   text: {
-    color: "#D8D8D8",
-    bottom: 6,
-    marginTop: 5
+    fontWeight: Platform.OS === "ios" ? "500" : "400",
+    fontSize: 16,
+    marginLeft: 20,
+    color: "#fff"
   },
-  titletext: {
-    left: 50,
-    color: 'white',
-    bottom: 250
+  badgeText: {
+    fontSize: Platform.OS === "ios" ? 13 : 11,
+    fontWeight: "400",
+    textAlign: "center",
+    marginTop: Platform.OS === "android" ? -3 : undefined
   }
 };

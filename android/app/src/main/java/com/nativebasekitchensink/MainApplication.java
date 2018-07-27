@@ -3,6 +3,12 @@ package com.nativebasekitchensink;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.chirag.RNMail.RNMail;
+import com.github.wumke.RNImmediatePhoneCall.RNImmediatePhoneCallPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -24,6 +30,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNMail(),
+            new RNImmediatePhoneCallPackage(),
+            new RNFetchBlobPackage(),
+            new ReactNativePushNotificationPackage(),
+            new FBSDKPackage(),
+            new RNCameraPackage(),
             new VectorIconsPackage()
       );
     }
